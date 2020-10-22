@@ -4,59 +4,35 @@ const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 
-function preload()
-{
-	
+var character;
+
+function preload(){
+	//loads standing image
+	standing = loadImage("standing.jpg");
+
+	//loads running image
+	running = loadImage("running.jpg");
+
 }
 
-function setup() {
-	createCanvas(800, 700);
+function setup(){
 
-
-	engine = Engine.create();
-	world = engine.world;
-
-	//creates the paper
-	paper = new Paper (200,120);
-
-	//creates the dustbin
-	dustbin = new Dustbin (400,591,150,100);
-	
-	//creates the ground
-	ground = new Ground (400,650,800,20);
-
-	
-
-
-	Engine.run(engine);
-  
 }
 
+function draw(){
+	var canvas = createCanvas(500,500);
+	background(255);
 
-function draw() {
-  rectMode(CENTER);
-  background(255);
+	//creates the character
+	character = createSprite(100,250,50,50);
+	character.addAnimation("characterImg",standing);
 
-  paper.display();
-  dustbin.display();
-  ground.display();
 
-	if(paper.y-dustbin.y<paper.height/2+dustbin.height/2){
-		paper.velocityY = 10;
-	}
 
-  
-  
-  
-  drawSprites();
- 
-}
 
-function keyPressed(){
-	if(keyCode === UP_ARROW){
-	Matter.Body.applyForce(paper.body,paper.body.position,{x:500,y:-500.51});
-}
 
+
+	character.display();
 }
 
 
